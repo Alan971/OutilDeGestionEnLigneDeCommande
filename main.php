@@ -9,49 +9,39 @@ spl_autoload_register(
     });
 
 use class\bdd\ContactManager;
+use class\bdd\Contact;
+use class\Command;
 
-$contacts= new ContactManager();
-        foreach($contacts->findAll() as $contact)
-        {
-            $i=0;
-            while($i<4)
-            {
-                echo $contact[$i] . ", " ;
-                $i++;
-            }
-        }
 
-// while (true) {
-//     $line = readline("Entrez votre commande (help, list, detail, create, delete, quit) : ");
-//     switch($line){
-//     case 'list':
-//         echo "Liste des contacts :<BR> id, name, email, number <BR>";
-//         $contacts= new ContactManager();
-//         foreach($contacts->findAll() as $contact)
-//         {
-//             $i=0;
-//             while($i<4)
-//             {
-//                 echo $contact[$i] . ", " ;
-//                 $i++;
-//             }
-//         }
-//         break;
-//     case 'detail':
+// test de la classe Contact
+// $id=3;
+// $Unique=new Contact($id);
+// echo $Unique->toString();
 
-//         break;
-//     case 'create':
 
-//         break;
-//     case 'delete':
+while (true) {
+    $line = readline("Entrez votre commande (help, list, detail, create, delete, quit) : ");
+    $command = new Command;
+    switch($line){
+        case 'list':
+            $command->list();
+            break;
+        case 'detail':
 
-//         break;
-//     case 'quit' :
+            break;
+        case 'create':
 
-//         break;
-//     case 'help' : 
+            break;
+        case 'delete':
 
-//         break;
-//     }
-    
-// }
+            break;
+        case 'quit' :
+
+            break;
+        case 'help' : 
+
+            break;
+        
+        default:
+    }
+}
