@@ -7,7 +7,7 @@ use Exception;
  class DBConnect {
     // mysql est le nom du container docker
     //root et dbroot sont les login et mdp
-    private const CONNECT ='mysql:host=mysql;dbname=dbCommandLineInterface;charset=utf8';
+    private const CONNECT ='mysql:host=127.0.0.1;dbname=dbCommandLineInterface;charset=utf8';
     private const LOGIN ='root';
     private const PWD ='dbroot';
 
@@ -23,7 +23,7 @@ use Exception;
         }
         //en cas d'erreur on affiche le message et on arrête tout
         catch(Exception $e) {
-            die('erreur : ' . $e ->getMessage());
+            die('Erreur : ' . $e ->getMessage());
         }
         return  $db;
     }

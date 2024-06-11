@@ -5,14 +5,12 @@ namespace class\bdd;
 use class\bdd\DBConnect;
 
 class ContactManager{
-    private const QUERRYALL = "SELECT * FROM contact";
-
 
     public function findAll() : array
     {   
-        $dbConnect = new DBConnect;
+        $dbConnect = new DBConnect();
         $db = $dbConnect->getPDO();
-        $dbQuerry = $db->prepare(self::QUERRYALL);
+        $dbQuerry = $db->prepare("SELECT * FROM contact");
         $dbQuerry->execute();
         return $dbQuerry->fetchAll();
     }

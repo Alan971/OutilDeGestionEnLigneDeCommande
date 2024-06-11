@@ -21,25 +21,26 @@ use class\Command;
 
 while (true) {
     $line = readline("Entrez votre commande (help, list, detail, create, delete, quit) : ");
-    $command = new Command;
-    switch($line){
+    $args = explode(" ", $line);
+    $command = new Command();
+    switch($args[0]){
         case 'list':
             $command->list();
             break;
         case 'detail':
-
+            $command->detail($args[1]);
             break;
         case 'create':
-
+            $command->create();
             break;
         case 'delete':
-
+            $command->delete();
             break;
         case 'quit' :
-
+            $command->quit();
             break;
         case 'help' : 
-
+            $command->help();
             break;
         
         default:
