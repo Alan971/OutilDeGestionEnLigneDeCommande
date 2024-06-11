@@ -8,7 +8,7 @@ use class\bdd\Contact;
 
 class Command {
     
-    public string $id;
+    public ?string $id=NULL;
 
     public function list() : void
     {
@@ -24,15 +24,30 @@ class Command {
 
     public function detail( $id) :void
     {
+        $detailToPrint = "";
+
         $intId=intval($id);
-        if($intId)
+        if(!is_null($intId))
         {
-            echo "cool";
+            $contacts= new ContactManager();
+            foreach($contacts->findAll() as $contact)
+            {
+                $contactObj= new Contact($contact['id'],$contact['name'], $contact['email'], $contact['phone_number']);
+                if($contactObj->getId() == $intId)
+                {
+                    $detailToPrint =  $contactObj->toString();
+                }
+            }
+            if($detailToPrint == "")
+            {
+                $detailToPrint = "erreur de saisie \n";
+            }
         }
         else 
         {
-            echo "ID inconnu \n";
+            $detailToPrint = "erreur de saisie \n";
         }
+        echo $detailToPrint . "\n";
     }
 
     public function create() : void
@@ -42,7 +57,7 @@ class Command {
 
     public function delete() :void
     {
-        
+
     }
 
     public function help() :void
