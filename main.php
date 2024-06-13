@@ -45,7 +45,7 @@ while (true) {
         case 'help' : 
             $command->help();
             break;
-        
         default:
+            echo "commande incorrecte\n";
     }
 }
