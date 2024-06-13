@@ -8,14 +8,19 @@ use class\bdd\Contact;
 
 class Command {
     
-    public ?string $id=NULL;
+    private $contact;
+
+    public function __construct()
+    {
+        $this->contact = new ContactManager;
+    }
 
     public function list() : void
     {
         // Je ne sais pas mettre à la ligne 
         echo "Liste des contacts : id, name, email, number \n";
-        $contacts= new ContactManager();
-        foreach($contacts->findAll() as $contact)
+        
+        foreach($this->contact->findAll() as $contact)
         {
             $contactObj= new Contact($contact['id'],$contact['name'], $contact['email'], $contact['phone_number']);
             echo $contactObj->toString() ."\n";
@@ -29,8 +34,7 @@ class Command {
         $intId=intval($id);
         if(!is_null($intId))
         {
-            $contacts= new ContactManager();
-            foreach($contacts->findAll() as $contact)
+            foreach($this->contact->findAll() as $contact)
             {
                 $contactObj= new Contact($contact['id'],$contact['name'], $contact['email'], $contact['phone_number']);
                 if($contactObj->getId() == $intId)
