@@ -29,7 +29,9 @@ class ContactManager{
     }
     public function deleteContact($id) : void
     {
-        $dbQuerry = $this->db->prepare("DELETE FROM contact WHERE 'id'=:id");
+        // note pour plus tard : WHERE id = :id est sans ''
+        // car avec la supression ne se fait pas et ne retourne pas d'erreur
+        $dbQuerry = $this->db->prepare("DELETE FROM contact WHERE id =:id");
         $dbQuerry->execute(['id'=>$id]);
         $dbQuerry->fetchAll();
     }
