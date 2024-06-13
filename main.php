@@ -31,10 +31,10 @@ while (true) {
             $command->detail($args[1]);
             break;
         case 'create':
-            $command->create();
+            $command->create($args);
             break;
         case 'delete':
-            $command->delete();
+            $command->delete($args[1]);
             break;
         case 'quit' :
             $command->quit();
