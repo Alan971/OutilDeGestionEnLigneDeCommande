@@ -25,10 +25,17 @@ class ContactManager{
     }
     public function deleteContact($id) : void
     {
-        $dbConnect = new DBConnect();
-        $db = $dbConnect->getPDO();
-        $dbQuerry = $db->prepare("DELETE FROM contact WHERE 'id'=?");
-        $dbQuerry->execute([$id]);
+        $db = (new DBConnect())->getPDO();
+        $dbQuerry = $db->prepare("DELETE FROM contact WHERE 'id'=:id");
+        $dbQuerry->execute(['id'=>$id]);
+        $dbQuerry->fetchAll();
+    }
+
+    public function modifyContact($Contact) :void
+    {
+        $db = (new DBConnect())->getPDO();
+        $dbQuerry = $db->prepare("UPDATE contact SET  `name`= :name, `email`= :email , `phone_number`= :phone_number WHERE id= :id");
+        $dbQuerry->execute(['name'=>$Contact['name'], 'email'=>$Contact['email'],'phone_number'=>$Contact['phone_number'],'id'=>$Contact['id']]);
         $dbQuerry->fetchAll();
     }
 }

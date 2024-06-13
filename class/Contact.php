@@ -12,8 +12,6 @@ class Contact {
        
     }
 
-
-    // gestion de récupération et de creation d'objet
     public function getId() : ?int
     {
         return $this->id;
