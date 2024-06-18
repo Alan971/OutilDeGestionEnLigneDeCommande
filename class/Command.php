@@ -17,7 +17,6 @@ class Command {
 
     public function list() : void
     {
-        // Je ne sais pas mettre à la ligne 
         echo "Liste des contacts : id, name, email, number \n";
         
         foreach($this->contact->findAll() as $contact)
@@ -69,7 +68,6 @@ class Command {
             {
                 $detailToPrint = "Erreur de saisie : une virgule ou plus est manquante. \n";
             }
-            // controle de présence d'un email et téléphone correct
             elseif(filter_var($newContact[2], FILTER_VALIDATE_EMAIL) || !preg_match( $regex, $newContact[3]))
             {
                 $detailToPrint = "Erreur de saisie : l'email ou le téléphone n'est pas valide. \n";
@@ -78,7 +76,7 @@ class Command {
                 // suppression des virgules en fin d'argument. seul deux en possèdent
                 $newContact[1] = substr($newContact[1],0,strlen($newContact[1])-1);
                 $newContact[2] = substr($newContact[2],0,strlen($newContact[2])-1);
-                // enregistrement dans la base
+
                 $contact= new ContactManager();
                 $contact->createContact($newContact);
                 $detailToPrint = "Enregistrement réalisé. \n";
@@ -133,7 +131,6 @@ class Command {
             }
             else 
             {
-                // creation de classe d'usage des bdd
                 $contacts = new ContactManager();
                 foreach($contacts->findAll() as $contact)
                 {
@@ -141,12 +138,12 @@ class Command {
                     if($contactObj->getId() == $id)
                     {
 
-                        // mise en forme du tableau et suppression des virgules en fin d'argument. seul deux en possèdent
+                        // mise en forme du tableau et suppression des virgules en fin d'argument.
                         $contact['id']= $id;
                         $contact['name'] = substr($modifiingContact['2'],0,strlen($modifiingContact['2'])-1);
                         $contact['email'] = substr($modifiingContact['3'],0,strlen($modifiingContact['3'])-1);
                         $contact['phone_number']=substr($modifiingContact['4'],0,strlen($modifiingContact['4'])-1);
-                        // controle de présence d'un email et téléphone correct
+
                         if(filter_var($modifiingContact['3'], FILTER_VALIDATE_EMAIL) || !preg_match( $regex, $modifiingContact['4']))
                         {
                             echo $modifiingContact['3'] . " et " . $modifiingContact['4'] . "\n";
@@ -170,7 +167,7 @@ class Command {
 
     public function help() :void
     {
-        // voir nowdoc et heredoc
+
         echo <<<EOT
         help : affiche cette aide
 

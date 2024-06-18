@@ -5,8 +5,6 @@ use PDO;
 use Exception;
 
  class DBConnect {
-    // mysql est le nom du container docker
-    //root et dbroot sont les login et mdp
     private const CONNECT ='mysql:host=127.0.0.1;dbname=dbCommandLineInterface;charset=utf8';
     private const LOGIN ='root';
     private const PWD ='dbroot';
@@ -19,9 +17,7 @@ use Exception;
                 self::LOGIN,
                 self::PWD
             );
-            // $db = new PDO('mysql:host=mysql;dbname=dbCommandLineInterface;charset=utf8','root','dbroot');
         }
-        //en cas d'erreur on affiche le message et on arrête tout
         catch(Exception $e) {
             die('Erreur : ' . $e ->getMessage());
         }
